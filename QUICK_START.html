@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧭 ISO 9001 Kompass - Quick Start Guide</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8f4f8 100%);
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2E5C8A, #4A7BA7);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .header p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 2rem;
+        }
+        .step {
+            background: #f9fafb;
+            border-left: 4px solid #2E5C8A;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 0 8px 8px 0;
+        }
+        .step-number {
+            display: inline-block;
+            background: #2E5C8A;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+        .step h2 {
+            display: inline-block;
+            color: #2E5C8A;
+            margin-bottom: 1rem;
+        }
+        .step ul {
+            margin-left: 3rem;
+            margin-top: 0.5rem;
+        }
+        .step li {
+            margin: 0.5rem 0;
+        }
+        .code {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+        }
+        .url {
+            background: #fff2cc;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-family: monospace;
+            display: inline-block;
+            margin: 0.5rem 0;
+        }
+        .success {
+            background: #d9ead3;
+            border-left-color: #059669;
+        }
+        .warning {
+            background: #fff2cc;
+            border-left-color: #F59E0B;
+        }
+        .btn {
+            display: inline-block;
+            background: #C55A11;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0.5rem;
+        }
+        .btn:hover {
+            background: #a04609;
+        }
+        .checklist {
+            list-style: none;
+        }
+        .checklist li:before {
+            content: "☐ ";
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            background: #f9fafb;
+            border-top: 1px solid #e5e7eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧭 ISO 9001 Kompass</h1>
+            <p>Quick Start Guide - In 30 Minuten live!</p>
+        </div>
+
+        <div class="content">
+            <div class="step success">
+                <h2><span class="step-number">1</span>Google Apps Script (10 Min)</h2>
+                <ul class="checklist">
+                    <li>Google Sheet erstellen: "ISO 9001 Kompass - Leads"</li>
+                    <li>Erweiterungen → Apps Script</li>
+                    <li>Code aus <code>google-apps-script/Code.gs</code> einfügen</li>
+                    <li>CONFIG anpassen (E-Mail, Calendly-Link)</li>
+                    <li>Bereitstellen → Neue Bereitstellung → Web-App</li>
+                    <li>Ausführen als: Ich | Zugriff: Jeder</li>
+                    <li>Berechtigungen erteilen</li>
+                    <li><strong>URL kopieren!</strong> → Sieht so aus:</li>
+                </ul>
+                <div class="url">https://script.google.com/macros/s/ABC123.../exec</div>
+            </div>
+
+            <div class="step">
+                <h2><span class="step-number">2</span>GitHub Repository (5 Min)</h2>
+                <ul class="checklist">
+                    <li>GitHub Account erstellen (falls nicht vorhanden)</li>
+                    <li>Neues Repository: "iso-9001-kompass" (Public)</li>
+                    <li>Alle Dateien hochladen ODER via Git:</li>
+                </ul>
+                <div class="code">git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/DEIN_USERNAME/iso-9001-kompass.git
+git push -u origin main</div>
+            </div>
+
+            <div class="step warning">
+                <h2><span class="step-number">3</span>Google Script URL eintragen (2 Min)</h2>
+                <ul class="checklist">
+                    <li>Datei öffnen: <code>src/App.jsx</code></li>
+                    <li>Zeile 4 anpassen:</li>
+                </ul>
+                <div class="code">// VORHER:
+const GOOGLE_SCRIPT_URL = 'HIER_DEINE_GOOGLE_APPS_SCRIPT_URL_EINTRAGEN';
+
+// NACHHER:
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/ABC.../exec';</div>
+                <ul class="checklist">
+                    <li>Speichern & auf GitHub pushen</li>
+                </ul>
+            </div>
+
+            <div class="step success">
+                <h2><span class="step-number">4</span>Netlify Deployment (10 Min)</h2>
+                <ul class="checklist">
+                    <li>Netlify Account: <a href="https://netlify.com" target="_blank">netlify.com</a></li>
+                    <li>Mit GitHub verbinden</li>
+                    <li>New site → Import existing project</li>
+                    <li>Repository auswählen: iso-9001-kompass</li>
+                    <li>Build Settings (automatisch erkannt):</li>
+                </ul>
+                <div class="code">Build command: npm install && npm run build
+Publish directory: dist</div>
+                <ul class="checklist">
+                    <li>Deploy site klicken → Warten (2-3 Min)</li>
+                    <li>✅ Status: Published → Fertig!</li>
+                </ul>
+            </div>
+
+            <div class="step success">
+                <h2><span class="step-number">5</span>Testen! (5 Min)</h2>
+                <ul class="checklist">
+                    <li>Live-URL öffnen (von Netlify)</li>
+                    <li>Alle 25 Fragen durchklicken</li>
+                    <li>E-Mail eingeben & absenden</li>
+                    <li>Prüfen:
+                        <ul>
+                            <li>E-Mail erhalten? ✅</li>
+                            <li>Google Sheet: Neue Zeile? ✅</li>
+                            <li>Admin-Benachrichtigung? ✅</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <h2>🎯 Nächste Schritte</h2>
+                <ul>
+                    <li>Custom Domain einrichten (z.B. kompass.onlinecert.info)</li>
+                    <li>Auf Website verlinken</li>
+                    <li>LinkedIn-Post schreiben</li>
+                    <li>Google Ads Kampagne starten</li>
+                    <li>Erste Leads konvertieren! 💰</li>
+                </ul>
+            </div>
+
+            <div class="step warning">
+                <h2>⚠️ Häufige Fehler</h2>
+                <ul>
+                    <li><strong>"Failed to fetch"</strong> → Google Script URL korrekt?</li>
+                    <li><strong>"terser not found"</strong> → vite.config.js: <code>minify: 'esbuild'</code></li>
+                    <li><strong>"vite: not found"</strong> → netlify.toml: <code>npm install &&</code> ...</li>
+                    <li><strong>Keine E-Mail</strong> → Spam prüfen, Apps Script Logs prüfen</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            <h3>📚 Weitere Ressourcen</h3>
+            <a href="README.md" class="btn">README lesen</a>
+            <a href="DEPLOYMENT_CHECKLIST.md" class="btn">Checkliste</a>
+            <a href="ARCHITECTURE.md" class="btn">Architektur</a>
+            <br><br>
+            <p style="color: #666; margin-top: 1rem;">
+                <strong>OnlineCert.info</strong> | ISO 9001 Kompass<br>
+                © 2026 Holger Grosser
+            </p>
+        </div>
+    </div>
+</body>
+</html>
