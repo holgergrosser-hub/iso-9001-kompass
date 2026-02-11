@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { questions, sections, calculateMaturity } from './questions'
 
 // KONFIGURATION - HIER DEINE GOOGLE APPS SCRIPT URL EINTRAGEN!
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxnf3DqoAD9QgsFJQDKv-hAzwpjpOmrVBqvgJSXzf-ufnr_xpaJsXl3Ca6Hq5LrHvRtzw/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzadpZNHhZjHme_0CeUqvQXaFRSCEjyAXGd4DtQl8TZVJsk0TgOoYfg1JbEr12CrFNDUg/exec';
 
 function App() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
