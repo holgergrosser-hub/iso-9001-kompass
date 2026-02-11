@@ -24,7 +24,7 @@ const CONFIG = {
   sheetName: 'Leads',
   adminEmail: 'kontakt@qm-guru.de',
   senderName: 'Holger Grosser | QM-Guru.de',
-  calendlyUrl: 'https://calendly.com/holger-grosser/erstgespraech',
+  calendlyUrl: 'https://calendly.com/grosser-qmguru/fragen-zur-zertifizierung',
   websiteUrl: 'https://qm-guru.de',
   sectionNames: [
     'Kontext der Organisation',

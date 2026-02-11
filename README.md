@@ -40,7 +40,7 @@ Ein interaktives 25-Fragen-Tool, das automatisch:
      sheetName: 'Leads',  // Name des Tabs im Google Sheet
      adminEmail: 'DEINE_EMAIL@onlinecert.info',  // Für Benachrichtigungen
      senderName: 'Holger Grosser | OnlineCert',
-     calendlyUrl: 'https://calendly.com/holger-grosser/erstgespraech',
+       calendlyUrl: 'https://calendly.com/grosser-qmguru/fragen-zur-zertifizierung',
      websiteUrl: 'https://onlinecert.info'
    };
    ```

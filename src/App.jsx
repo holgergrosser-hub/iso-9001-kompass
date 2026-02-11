@@ -213,7 +213,7 @@ function App() {
           <div style={{ marginTop: '2rem', textAlign: 'center' }}>
             <p style={{ marginBottom: '1rem', color: '#4B5563' }}>Oder direkt Termin buchen:</p>
             <a 
-              href="https://calendly.com/holger-grosser/erstgespraech"
+              href="https://calendly.com/grosser-qmguru/fragen-zur-zertifizierung"
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-secondary btn-large"
