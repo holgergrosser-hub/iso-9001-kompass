@@ -369,11 +369,17 @@ function getTimeline(score) {
 }
 
 function getPackage(score) {
-  if (score >= 51) return "STARTER";
-  return "SCALE";
+  if (score >= 86) return "EXPRESS";
+  if (score >= 71) return "STARTER";
+  if (score >= 51) return "STANDARD";
+  if (score >= 31) return "PROFESSIONAL";
+  return "COMPLETE";
 }
 
 function getPrice(score) {
-  if (score >= 51) return "800 EUR";
-  return "1.500 EUR";
+  if (score >= 86) return "800 EUR";
+  if (score >= 71) return "1.200 EUR";
+  if (score >= 51) return "1.800 EUR";
+  if (score >= 31) return "2.500 EUR";
+  return "3.500 EUR";
 }
