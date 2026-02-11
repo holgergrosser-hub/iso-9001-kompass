@@ -15,7 +15,8 @@
 - [ ] GitHub Account vorhanden
 - [ ] Repository "iso-9001-kompass" erstellt (Public)
 - [ ] Alle Dateien hochgeladen
-- [ ] Google Script URL in src/App.jsx eingetragen
+- [ ] Netlify Env Var `VITE_GOOGLE_SCRIPT_URL` gesetzt
+
 
 ### Netlify
 - [ ] Netlify Account erstellt (mit GitHub verbunden)

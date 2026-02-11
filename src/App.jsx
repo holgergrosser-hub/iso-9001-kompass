@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import { questions, sections, calculateMaturity } from './questions'
 
-// KONFIGURATION - HIER DEINE GOOGLE APPS SCRIPT URL EINTRAGEN!
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzadpZNHhZjHme_0CeUqvQXaFRSCEjyAXGd4DtQl8TZVJsk0TgOoYfg1JbEr12CrFNDUg/exec';
+// KONFIGURATION
+// Lokal: .env Datei mit VITE_GOOGLE_SCRIPT_URL=...
+// Netlify: Site settings → Environment variables → VITE_GOOGLE_SCRIPT_URL
+const DEFAULT_GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzadpZNHhZjHme_0CeUqvQXaFRSCEjyAXGd4DtQl8TZVJsk0TgOoYfg1JbEr12CrFNDUg/exec';
+const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL || DEFAULT_GOOGLE_SCRIPT_URL;
 
 function App() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -66,7 +69,7 @@ function App() {
       formData.append('sections', JSON.stringify(result.sections));
       formData.append('answers', JSON.stringify(answers));
 
-      const response = await fetch(GOOGLE_SCRIPT_URL, {
+      await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
         body: formData
       });

@@ -100,27 +100,30 @@ Ein interaktives 25-Fragen-Tool, das automatisch:
 
    ODER: Einfach alle Dateien via GitHub Web-Interface hochladen
 
+
 ---
 
-### Schritt 3: Google Script URL eintragen (2 Min)
+### Schritt 3: Google Script URL konfigurieren (2 Min)
 
-1. **Datei öffnen: src/App.jsx**
+Die URL wird über eine Environment Variable gesetzt (nicht im Code hardcoden).
 
-2. **Zeile 4 anpassen**
-   ```javascript
-   // VORHER:
-   const GOOGLE_SCRIPT_URL = 'HIER_DEINE_GOOGLE_APPS_SCRIPT_URL_EINTRAGEN';
-   
-   // NACHHER:
-   const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/ABC.../exec';
-   ```
-
-3. **Speichern & Committen**
+#### Lokal (Development)
+1. **Datei erstellen: .env** (siehe auch `.env.example`)
    ```bash
-   git add src/App.jsx
-   git commit -m "Add Google Script URL"
-   git push
+   VITE_GOOGLE_SCRIPT_URL=https://script.google.com/macros/s/ABC.../exec
    ```
+
+2. **Dev Server starten**
+   ```bash
+   npm run dev
+   ```
+
+#### Netlify (Production)
+1. **Netlify → Site settings → Environment variables**
+2. Variable anlegen:
+   - Key: `VITE_GOOGLE_SCRIPT_URL`
+   - Value: `https://script.google.com/macros/s/ABC.../exec`
+3. Re-deploy auslösen (oder neuer Commit triggert automatisch)
 
 ---
 

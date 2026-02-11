@@ -136,6 +136,9 @@ const result = calculateMaturity(answers);
 // React App (src/App.jsx)
 const handleSubmitEmail = async (e) => {
   e.preventDefault();
+
+   // Endpoint kommt aus Environment Variable
+   const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
   
   // FormData erstellen (WICHTIG: Kein Content-Type Header!)
   const formData = new FormData();

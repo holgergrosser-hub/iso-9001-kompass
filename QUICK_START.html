@@ -163,18 +163,15 @@ git push -u origin main</div>
             </div>
 
             <div class="step warning">
-                <h2><span class="step-number">3</span>Google Script URL eintragen (2 Min)</h2>
+                <h2><span class="step-number">3</span>Google Script URL konfigurieren (2 Min)</h2>
                 <ul class="checklist">
-                    <li>Datei öffnen: <code>src/App.jsx</code></li>
-                    <li>Zeile 4 anpassen:</li>
+                    <li><strong>Lokal:</strong> Datei <code>.env</code> anlegen (siehe <code>.env.example</code>)</li>
                 </ul>
-                <div class="code">// VORHER:
-const GOOGLE_SCRIPT_URL = 'HIER_DEINE_GOOGLE_APPS_SCRIPT_URL_EINTRAGEN';
-
-// NACHHER:
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/ABC.../exec';</div>
+                <div class="code">VITE_GOOGLE_SCRIPT_URL=https://script.google.com/macros/s/ABC.../exec</div>
                 <ul class="checklist">
-                    <li>Speichern & auf GitHub pushen</li>
+                    <li><strong>Netlify:</strong> Site settings → Environment variables</li>
+                    <li>Key: <code>VITE_GOOGLE_SCRIPT_URL</code></li>
+                    <li>Value: <code>https://script.google.com/macros/s/ABC.../exec</code></li>
                 </ul>
             </div>
 
