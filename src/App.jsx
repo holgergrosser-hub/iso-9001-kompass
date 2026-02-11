@@ -4,8 +4,7 @@ import { questions, sections, calculateMaturity } from './questions'
 // KONFIGURATION
 // Lokal: .env Datei mit VITE_GOOGLE_SCRIPT_URL=...
 // Netlify: Site settings → Environment variables → VITE_GOOGLE_SCRIPT_URL
-const DEFAULT_GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzadpZNHhZjHme_0CeUqvQXaFRSCEjyAXGd4DtQl8TZVJsk0TgOoYfg1JbEr12CrFNDUg/exec';
-const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL || DEFAULT_GOOGLE_SCRIPT_URL;
+const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
 
 function App() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -56,6 +55,11 @@ function App() {
     setSubmitError('');
 
     try {
+      if (!GOOGLE_SCRIPT_URL) {
+        setSubmitError('Konfiguration fehlt: Bitte VITE_GOOGLE_SCRIPT_URL setzen.');
+        return;
+      }
+
       const result = calculateMaturity(answers);
       
       // FormData verwenden (KEIN Content-Type Header!)
