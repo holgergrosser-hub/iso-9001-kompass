@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { questions, sections, calculateMaturity } from './questions'
 
 // KONFIGURATION - HIER DEINE GOOGLE APPS SCRIPT URL EINTRAGEN!
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzadpZNHhZjHme_0CeUqvQXaFRSCEjyAXGd4DtQl8TZVJsk0TgOoYfg1JbEr12CrFNDUg/exec';
+const GOOGLE_SCRIPT_URL = 'HIER_DEINE_GOOGLE_APPS_SCRIPT_URL_EINTRAGEN';
 
 function App() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -20,7 +20,11 @@ function App() {
   const currentSection = sections.find(s => s.id === currentQ.section);
 
   const handleAnswer = (value) => {
-    setAnswers({ ...answers, [currentQ.id]: value });
+    console.log('handleAnswer called with value:', value, 'for question:', currentQ.id);
+    console.log('Current answers before update:', answers);
+    const newAnswers = { ...answers, [currentQ.id]: value };
+    console.log('New answers after update:', newAnswers);
+    setAnswers(newAnswers);
   };
 
   const handleNext = () => {
@@ -59,8 +63,6 @@ function App() {
       formData.append('score', result.total);
       formData.append('category', result.category);
       formData.append('timeline', result.timeline);
-      formData.append('package', result.package);
-      formData.append('price', result.price);
       formData.append('sections', JSON.stringify(result.sections));
       formData.append('answers', JSON.stringify(answers));
 
@@ -114,28 +116,19 @@ function App() {
 
         <div className="recommendations">
           <div className="card">
-            <h3 style={{ marginBottom: '1rem', color: '#2E5C8A' }}>Ihre Empfehlung</h3>
+            <h3 style={{ marginBottom: '1rem', color: '#2E5C8A' }}>Ihre nächsten Schritte</h3>
             
             <div className="recommendation-card">
               <div className="recommendation-title">
-                <span>📦</span>
-                <span>Empfohlenes Paket: {result.package}</span>
-              </div>
-              <p className="recommendation-text">
-                Geschätzte Kosten: {result.price} | Timeline: {result.timeline}
-              </p>
-            </div>
-
-            <div className="recommendation-card">
-              <div className="recommendation-title">
                 <span>🎯</span>
-                <span>Nächste Schritte</span>
+                <span>Empfehlung für Sie</span>
               </div>
               <p className="recommendation-text">
-                {result.total < 30 && "Ihr Unternehmen steht am Anfang der ISO 9001 Reise. Mit den richtigen Templates und Unterstützung sind Sie in 8-12 Wochen zertifizierbar."}
+                {result.total < 30 && "Ihr Unternehmen steht am Anfang der ISO 9001 Reise. Mit den richtigen Templates und Unterstützung können Sie in 8-12 Wochen zertifizierbar sein."}
                 {result.total >= 30 && result.total < 50 && "Sie haben bereits eine Grundlage. Mit gezieltem Coaching schließen Sie die Lücken in 6-8 Wochen."}
                 {result.total >= 50 && result.total < 70 && "Sehr gut! Die Basis steht. Jetzt geht es um Feinschliff. Zertifizierung in 4-6 Wochen realistisch."}
-                {result.total >= 70 && "Exzellent! Sie sind fast fertig. Mit einem Pre-Audit finden wir die letzten Schwachstellen."}
+                {result.total >= 70 && result.total < 86 && "Exzellent! Sie sind auf einem sehr guten Weg. Mit einem Pre-Audit finden Sie die letzten Schwachstellen."}
+                {result.total >= 86 && "Hervorragend! Sie sind fast fertig. Die Zertifizierung ist in 2-3 Wochen möglich."}
               </p>
             </div>
           </div>
@@ -271,23 +264,35 @@ function App() {
           <h2 className="question-title">{currentQ.text}</h2>
 
           <div className="options">
-            {currentQ.options.map((option, index) => (
-              <div
-                key={index} 
-                className={`option ${answers[currentQ.id] === option.value ? 'selected' : ''}`}
-                onClick={() => handleAnswer(option.value)}
-              >
-                <input
-                  type="radio"
-                  name={`question-${currentQ.id}`}
-                  value={option.value}
-                  checked={answers[currentQ.id] === option.value}
-                  onChange={() => handleAnswer(option.value)}
-                  style={{ pointerEvents: 'none' }}
-                />
-                <span className="option-label">{option.label}</span>
-              </div>
-            ))}
+            {currentQ.options.map((option, index) => {
+              const uniqueKey = `q${currentQ.id}-opt${index}-val${option.value}`;
+              return (
+                <div
+                  key={uniqueKey}
+                  className={`option ${answers[currentQ.id] === option.value ? 'selected' : ''}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('Clicked option:', option.value, 'for question:', currentQ.id);
+                    handleAnswer(option.value);
+                  }}
+                  onMouseDown={(e) => e.preventDefault()}
+                  role="button"
+                  tabIndex={0}
+                >
+                  <input
+                    type="radio"
+                    name={`question-${currentQ.id}`}
+                    value={option.value}
+                    checked={answers[currentQ.id] === option.value}
+                    readOnly
+                    style={{ pointerEvents: 'none' }}
+                    tabIndex={-1}
+                  />
+                  <span className="option-label">{option.label}</span>
+                </div>
+              );
+            })}
           </div>
         </div>
 

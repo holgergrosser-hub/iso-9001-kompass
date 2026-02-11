@@ -159,18 +159,22 @@ body {
   cursor: pointer;
   transition: all 0.2s;
   user-select: none;
+  position: relative;
+  z-index: 1;
 }
 
 .option:hover {
   border-color: var(--secondary);
   background: var(--gray-50);
   transform: translateX(2px);
+  z-index: 2;
 }
 
 .option.selected {
   border-color: var(--primary);
   background: #E8F4F8;
   box-shadow: 0 2px 8px rgba(46, 92, 138, 0.15);
+  z-index: 2;
 }
 
 .option input[type="radio"] {
