@@ -21,10 +21,10 @@ function App() {
   const currentQ = questions[currentQuestion];
   const currentSection = sections.find(s => s.id === currentQ.section);
 
-  const handleAnswer = (value) => {
-    console.log('handleAnswer called with value:', value, 'for question:', currentQ.id);
+  const handleAnswer = (optionIndex) => {
+    console.log('handleAnswer called with optionIndex:', optionIndex, 'for question:', currentQ.id);
     console.log('Current answers before update:', answers);
-    const newAnswers = { ...answers, [currentQ.id]: value };
+    const newAnswers = { ...answers, [currentQ.id]: optionIndex };
     console.log('New answers after update:', newAnswers);
     setAnswers(newAnswers);
   };
@@ -272,16 +272,16 @@ function App() {
 
           <div className="options">
             {currentQ.options.map((option, index) => {
-              const uniqueKey = `q${currentQ.id}-opt${index}-val${option.value}`;
+              const uniqueKey = `q${currentQ.id}-opt${index}`;
               return (
                 <div
                   key={uniqueKey}
-                  className={`option ${answers[currentQ.id] === option.value ? 'selected' : ''}`}
+                  className={`option ${answers[currentQ.id] === index ? 'selected' : ''}`}
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    console.log('Clicked option:', option.value, 'for question:', currentQ.id);
-                    handleAnswer(option.value);
+                    console.log('Clicked option index:', index, 'for question:', currentQ.id);
+                    handleAnswer(index);
                   }}
                   onMouseDown={(e) => e.preventDefault()}
                   role="button"
@@ -290,8 +290,8 @@ function App() {
                   <input
                     type="radio"
                     name={`question-${currentQ.id}`}
-                    value={option.value}
-                    checked={answers[currentQ.id] === option.value}
+                    value={index}
+                    checked={answers[currentQ.id] === index}
                     readOnly
                     style={{ pointerEvents: 'none' }}
                     tabIndex={-1}

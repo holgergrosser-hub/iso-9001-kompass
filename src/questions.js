@@ -334,7 +334,11 @@ export function calculateMaturity(answers) {
     const sectionQuestions = questions.filter(q => q.id in answers && q.section === section.id);
     if (sectionQuestions.length === 0) return 0;
     
-    const total = sectionQuestions.reduce((sum, q) => sum + (answers[q.id] || 0), 0);
+    const total = sectionQuestions.reduce((sum, q) => {
+      const selectedIndex = answers[q.id];
+      const optionValue = q.options?.[selectedIndex]?.value ?? 0;
+      return sum + optionValue;
+    }, 0);
     return total / sectionQuestions.length;
   });
 
