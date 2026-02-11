@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { questions, sections, calculateMaturity } from './questions'
 
 // KONFIGURATION - HIER DEINE GOOGLE APPS SCRIPT URL EINTRAGEN!
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzrWD_KuUQTgyM12Vl61wWcYloUl_DQrhCTS9ZYIW3qIVaVcL6ZqUW2NsW0ARk1npqN-A/exec';
+const GOOGLE_SCRIPT_URL = 'HIER_DEINE_GOOGLE_APPS_SCRIPT_URL_EINTRAGEN';
 
 function App() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -86,13 +86,13 @@ function App() {
     return (
       <div className="container">
         <div className="result-hero">
-          <h2>Ihr ISO 9001 Kompass-Ergebnis</h2>
+          <h2>&#x1F9ED; Ihr ISO 9001 Kompass-Ergebnis</h2>
           <div className="result-score">{result.total}%</div>
           <div className="score-meter">
             <div className="score-meter-fill" style={{ width: `${result.total}%` }}></div>
           </div>
           <div className="result-category">{result.category}</div>
-          <div className="result-timeline">⏱ Timeline zur Zertifizierung: {result.timeline}</div>
+          <div className="result-timeline">&#x23F1; Timeline zur Zertifizierung: {result.timeline}</div>
         </div>
 
         <div className="card">
@@ -230,21 +230,21 @@ function App() {
   return (
     <div className="container">
       <div className="hero">
-        <h1>🧭 ISO 9001 Kompass</h1>
+        <h1>&#x1F9ED; ISO 9001 Kompass</h1>
         <p className="hero-subtitle">
           Finden Sie in 12 Minuten heraus, wie weit Sie von der ISO 9001 Zertifizierung entfernt sind
         </p>
         <div className="hero-stats">
           <div className="stat">
-            <span>✓</span>
+            <span>&#x2713;</span>
             <span>30 Jahre Erfahrung</span>
           </div>
           <div className="stat">
-            <span>✓</span>
+            <span>&#x2713;</span>
             <span>1.000+ erfolgreiche Audits</span>
           </div>
           <div className="stat">
-            <span>✓</span>
+            <span>&#x2713;</span>
             <span>100% kostenlos</span>
           </div>
         </div>
@@ -272,9 +272,10 @@ function App() {
 
           <div className="options">
             {currentQ.options.map((option, index) => (
-              <label 
+              <div
                 key={index} 
                 className={`option ${answers[currentQ.id] === option.value ? 'selected' : ''}`}
+                onClick={() => handleAnswer(option.value)}
               >
                 <input
                   type="radio"
@@ -282,9 +283,10 @@ function App() {
                   value={option.value}
                   checked={answers[currentQ.id] === option.value}
                   onChange={() => handleAnswer(option.value)}
+                  style={{ pointerEvents: 'none' }}
                 />
                 <span className="option-label">{option.label}</span>
-              </label>
+              </div>
             ))}
           </div>
         </div>
@@ -314,4 +316,3 @@ function App() {
 }
 
 export default App;
-
